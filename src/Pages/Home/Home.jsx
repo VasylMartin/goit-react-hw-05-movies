@@ -1,15 +1,16 @@
 import {useState, useEffect} from "react";
 import { fetchTrending } from "services/movies-api-gets";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Home = () => {
     const [trendings, setTrendings] = useState([])
+    const location = useLocation();
 
     useEffect(() => {
         fetchTrending().then(obj => {
-            setTrendings(obj.results)
-        }, [])
-    })
+            setTrendings(obj.results);
+        });
+    }, []);
     
     return(
         <div>
@@ -18,13 +19,13 @@ const Home = () => {
                 <ul>
                     {trendings.map(({id, title, name}) => (
                         <li key={id}>
-                            <NavLink to={`/movies/${id}`}>
+                            <NavLink to={`/movies/${id}`} state={{ from: location }}>
                                 {title}{name}
                             </NavLink>
                         </li>
                     ))}
                 </ul>
-            )   : null}
+            ) : null}
         </div>
     )
 
