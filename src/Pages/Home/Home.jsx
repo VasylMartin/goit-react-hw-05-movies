@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
-import { fetchTrendings } from "services/movies-api-gets";
+import { fetchTrending } from "services/movies-api-gets";
 import { NavLink } from "react-router-dom";
 
 const Home = () => {
     const [trendings, setTrendings] = useState([])
 
     useEffect(() => {
-        fetchTrendings().then(obj => {
+        fetchTrending().then(obj => {
             setTrendings(obj.results)
         }, [])
     })
