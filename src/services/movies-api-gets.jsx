@@ -22,3 +22,33 @@ export async function getMovieByName(query) {
     }
     return await Promise.reject(new Error('Ups! Something went wrong'));
 }
+
+export async function getMovieCast(movieId) {
+    const response = await fetch(
+        `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+    );
+    if (response.ok) {
+        return response.json();
+    }
+    return await Promise.reject(new Error('Ups! Something went wrong'));
+}
+
+export async function getMovieReviews(movieId) {
+    const response = await fetch(
+        `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+    );
+    if (response.ok) {
+        return response.json();
+    }
+    return await Promise.reject(new Error('Ups! Something went wrong'));
+}
+
+export async function getMovieDetails(movieId) {
+    const response = await fetch(
+        `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+    );
+    if (response.ok) {
+        return response.json();
+    }
+    return await Promise.reject(new Error('Ups! Something went wrong'));
+}
